@@ -1,17 +1,16 @@
 {
   "images" : [
     {
-      "filename" : "Кансинь@2x-1.jpg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Кансинь@2x.jpg",
+      "filename" : "photo@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "Кансинь@3x.jpg",
+      "filename" : "photo@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
