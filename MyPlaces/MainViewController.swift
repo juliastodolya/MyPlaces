@@ -52,5 +52,13 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         cell.imageOfPlace.clipsToBounds = true
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let place = places[indexPath.row]
+            StorageManager.deleteObject(place)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+    }
 
 }
