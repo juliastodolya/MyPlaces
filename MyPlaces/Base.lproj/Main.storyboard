@@ -15,8 +15,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="Fqw-sZ-byF">
+                                <rect key="frame" x="0.0" y="88" width="414" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="Date"/>
+                                    <segment title="Name"/>
+                                </segments>
+                            </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="85" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3nY-Zj-gS0">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <rect key="frame" x="0.0" y="120" width="414" height="742"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="E2P-6t-Ruy" customClass="CustomTableViewCell" customModule="MyPlaces" customModuleProvider="target">
@@ -71,6 +79,7 @@
                                             <outlet property="locationLabel" destination="ozp-6E-FzC" id="6ja-Oy-Uqx"/>
                                             <outlet property="nameLabel" destination="ZlZ-51-6io" id="t0D-bZ-W29"/>
                                             <outlet property="typeLabel" destination="USd-Lq-ViI" id="ESj-g2-D7e"/>
+                                            <segue destination="OBE-0O-PEN" kind="show" identifier="showDetail" id="3Hv-lf-UPc"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -78,14 +87,15 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="3nY-Zj-gS0" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="OpM-V2-jPt"/>
                             <constraint firstItem="3nY-Zj-gS0" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="RO7-Ix-0Gq"/>
+                            <constraint firstItem="3nY-Zj-gS0" firstAttribute="top" secondItem="Fqw-sZ-byF" secondAttribute="bottom" constant="1" id="Wlt-wp-c8z"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="3nY-Zj-gS0" secondAttribute="trailing" id="Yiz-Zo-SrB"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="3nY-Zj-gS0" secondAttribute="bottom" id="qMr-BA-avk"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" title="My Places" id="TOI-DP-HCP">
+                    <navigationItem key="navigationItem" title="My Places" largeTitleDisplayMode="never" id="TOI-DP-HCP">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="AZ" id="qML-cS-fCR"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="YTM-mK-Ifu">
                             <connections>
                                 <segue destination="SF2-6B-1qA" kind="presentation" id="Enw-vj-uVo"/>
@@ -105,7 +115,7 @@
             <objects>
                 <tableViewController id="OBE-0O-PEN" customClass="NewPlaceTableViewController" customModule="MyPlaces" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="lEy-vv-gf9">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <inset key="separatorInset" minX="16" minY="0.0" maxX="16" maxY="0.0"/>
@@ -245,7 +255,7 @@
                             <outlet property="delegate" destination="OBE-0O-PEN" id="Drq-XP-7GL"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="New Place" id="HAg-Fx-eac">
+                    <navigationItem key="navigationItem" title="New Place" largeTitleDisplayMode="always" id="HAg-Fx-eac">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="VCM-hY-ahv">
                             <connections>
                                 <action selector="cancelAction:" destination="OBE-0O-PEN" id="Ak6-6J-LPt"/>
@@ -268,15 +278,15 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fVh-Og-Vnl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="Lwq-sg-ZDL" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2547.826086956522" y="114.50892857142857"/>
+            <point key="canvasLocation" x="1403" y="887"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="szd-Ll-RRJ">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="pAB-nc-Rly" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="dWU-de-i18">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="dWU-de-i18">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="24"/>
@@ -310,7 +320,11 @@
             <point key="canvasLocation" x="1800" y="114"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="3Hv-lf-UPc"/>
+    </inferredMetricsTieBreakers>
     <resources>
+        <image name="AZ" width="25" height="24"/>
         <image name="Photo" width="195" height="196"/>
     </resources>
 </document>
