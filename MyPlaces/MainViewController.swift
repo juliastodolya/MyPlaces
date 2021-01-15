@@ -11,22 +11,26 @@ import RealmSwift
 
 class MainViewController: UIViewController {
     
-    @IBOutlet var placesTableView: UITableView!
+    @IBOutlet var tableView: UITableView!
+    @IBOutlet var segmentedControl: UISegmentedControl!
+    @IBOutlet var reversedSortedButton: UIBarButtonItem!
     
-    var places: Results<Place>!
+    private var places: Results<Place>!
+    private var ascendingSorting = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         places = realm.objects(Place.self)
         
-        placesTableView.delegate = self
-        placesTableView.dataSource = self
+        tableView.delegate = self
+        tableView.dataSource = self
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetail" {
-            guard let indexPath = placesTableView.indexPathForSelectedRow else { return }
+            guard let indexPath = tableView.indexPathForSelectedRow else { return }
             let place = places[indexPath.row]
             let newPlaceVC = segue.destination as! NewPlaceTableViewController
             newPlaceVC.currentPlace = place
@@ -37,9 +41,32 @@ class MainViewController: UIViewController {
         guard let newPlaceVC = segue.source as? NewPlaceTableViewController else { return }
 
         newPlaceVC.savePlace()
-        placesTableView.reloadData()
+        tableView.reloadData()
     }
-
+    
+    @IBAction func sortSelection(_ sender: UISegmentedControl) {
+        sorting()
+    }
+    
+    @IBAction func reversedSorting(_ sender: Any) {
+        ascendingSorting.toggle()
+        
+        if ascendingSorting {
+            reversedSortedButton.image = #imageLiteral(resourceName: "AZ")
+        } else {
+            reversedSortedButton.image = #imageLiteral(resourceName: "ZA")
+        }
+        sorting()
+    }
+    
+    private func sorting() {
+        if segmentedControl.selectedSegmentIndex == 0 {
+            places = places.sorted(byKeyPath: "date", ascending: ascendingSorting)
+        } else {
+            places = places.sorted(byKeyPath: "name", ascending: ascendingSorting)
+        }
+        tableView.reloadData()
+    }
 }
 
 extension MainViewController: UITableViewDataSource, UITableViewDelegate {
@@ -71,3 +98,5 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
 }
+
+
